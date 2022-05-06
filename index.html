@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Fitting Game</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- javascript main -->
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+
+    <!-- bodyを表示完了後にonLoadに登録された関数が実行される -->
+  <body onLoad="main();">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Fitting Game</a>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="col s6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Display</span>
+            <div style="width:100%; height:100%;">
+              <canvas id="canvas1" style="border:solid 1px #AAA"></canvas>
+            </div>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s3">
+                <a id="start" class="waves-effect waves-light btn" href="javascript:start_game()">ゲーム開始</a>
+              </div>
+              <div class="col s6">
+                <div>難易度</div>
+                <form>
+                  <label>
+                    <input class="with-gap" name="group1" type="radio" id="level_easy" checked="checked"/>
+                    <span>Easy</span>
+                  </label>
+                  <label>
+                    <input class="with-gap" name="group1" type="radio" id="level_normal"/>
+                    <span>Normal</span>
+                  </label>
+                  <label>
+                    <input class="with-gap" name="group1" type="radio" id="level_hard"/>
+                    <span>Hard</span>
+                  </label>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">操作パネル</span>
+            <p><span>　現在の損失の値：</span> <span id="loss_value">0</span></p>
+            <p><span>　　操作した回数：</span> <span id="operation_count">0</span></p>
+          </div>
+          <div class="card-action">
+            <p>パラメータ</p>
+            <div class="row">
+              <div class="col s12" id="slider1">
+                <div class="col s1">
+                  <p>-5</p>
+                </div>
+                <div class="col s9">
+                  <form>
+                    <p class="range-field">
+                      <input type="range" id="param_range1" min="-5" max="5"/>
+                    </p>
+                  </form>
+                </div>
+                <div class="col s1">
+                  <p>5</p>
+                </div>
+              </div>
+              <div class="col s12" id="slider2" style="display:none;">
+                <div class="col s1">
+                  <p>-5</p>
+                </div>
+                <div class="col s9">
+                  <form>
+                    <p class="range-field">
+                      <input type="range" id="param_range2" min="-5" max="5"/>
+                    </p>
+                  </form>
+                </div>
+                <div class="col s1">
+                  <p>5</p>
+                </div>
+              </div>
+              <div class="col s12" id="slider3" style="display:none;">
+                <div class="col s1">
+                  <p>-5</p>
+                </div>
+                <div class="col s9">
+                  <form>
+                    <p class="range-field">
+                      <input type="range" id="param_range3" min="-5" max="5"/>
+                    </p>
+                  </form>
+                </div>
+                <div class="col s1">
+                  <p>5</p>
+                </div>
+              </div>
+              <div class="col s12" id="slider4" style="display:none;">
+                <div class="col s1">
+                  <p>-5</p>
+                </div>
+                <div class="col s9">
+                  <form>
+                    <p class="range-field">
+                      <input type="range" id="param_range4" min="-5" max="5"/>
+                    </p>
+                  </form>
+                </div>
+                <div class="col s1">
+                  <p>5</p>
+                </div>
+              </div>
+              <div class="col s12">
+                <a id="submit" class="waves-effect waves-light btn disabled" href="javascript:submit_answer()">完了</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s3">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">ゲームのやり方</span>
+            <p>パラメータを変化させて，グラフが青色の点に合うような形にしよう</p>
+            <br>
+            <p>【目標】</p>
+            <p>(1) 損失を1以下にしよう</p>
+            <p>(2) 操作が30回を超えるとGAME OVER</p>
+          </div>
+        </div>
+        <div class="card" id="answer" style="display:none;">
+          <div class="card-content">
+            <span class="card-title" id="result">結果：失敗</span>
+            <p>【評価】</p>
+            <p id="evaluation">ポンコツですね</p>
+            <p>【解説】</p>
+            <p>緑色の線：真のグラフ</p>
+            <p>赤色の線：あなたが推定したグラフ</p>
+            <br>
+            <a id="next" class="waves-effect waves-light btn disabled" href="javascript:next_game()">OK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>
